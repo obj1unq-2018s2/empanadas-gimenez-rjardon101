@@ -1,5 +1,7 @@
 import empleados.*
 
+describe "test de empanadas gimenez"  {
+	
 test "sueldo de Baigorria y de Gimenez" {
 	baigorria.venderEmpanada()
 	baigorria.venderEmpanada()
@@ -9,5 +11,48 @@ test "sueldo de Baigorria y de Gimenez" {
 	assert.equals(15000, gimenez.sueldo())
 	gimenez.sueldo(12000)
 	assert.equals(12000, gimenez.sueldo())
-	//el ultimo test me da en amarillo no entiendo porque
+	//aca me da en amarillo por el sueldo de gimenez
+	//no entiendo como es que su sueldo cambia mes a mes si cobrar sueldo siempre le suma 15000
 }
+
+test "baigorria vende 5 empanadas" {
+	baigorria.venderEmpanada()
+	baigorria.venderEmpanada()
+	baigorria.venderEmpanada()
+	baigorria.venderEmpanada()
+	baigorria.venderEmpanada()
+	assert.equals(baigorria.sueldo(),1575)
+	//pongo 1575 porque por defecto vende 100 empanadas 
+}
+
+test "baigorria gasta 500 pesos y se suman a su deuda" {
+	baigorria.gastar(500)
+	assert.equals(baigorria.totalDeuda(),500)
+
+}
+
+test "baigorra tiene 4000 pesos de deuda" {
+		assert.equals(baigorria.sueldo(), 1500)
+		//aca hubiera restado los 4000 a los 1500 pero me guio según los ejemplos del ejercicio	
+		baigorria.gastar(4000)
+		assert.equals(baigorria.totalDeuda(), 4000)	
+}
+
+test "baigorria tiene 4000 pesos de deuda y cobra 1500" {
+	    baigorria.gastar(4000)
+		assert.equals(baigorria.totalDeuda(), 4000)
+		baigorria.cobrarSueldo()
+		assert.equals(baigorria.totalDeuda(), 2500)
+		assert.equals(baigorria.totalDinero(), -1000)
+		
+}
+
+test "baigorria tiene 500 pesos de deuda y cobra el sueldo, le queda 2500" {
+	    baigorria.gastar(500)
+	    assert.equals(baigorria.totalDeuda(), 500)
+	    baigorria.cobrarSueldo()
+	    assert.equals(baigorria.totalDinero(), 2500)
+	    	
+}
+
+} 
